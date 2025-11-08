@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selector Card</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 130%;
+      letter-spacing: 0px;
+      background-color: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .selector-card {
+      width: 370px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      cursor: pointer;
+    }
+
+    .option:hover .checkbox {
+      border-color: rgba(189, 189, 189, 1);
+    }
+
+    .option.selected:hover .checkbox {
+      background-color: rgba(80, 135, 248, 1);
+      border-color: rgba(80, 135, 248, 1);
+    }
+
+    .checkbox {
+      width: 23px;
+      height: 23px;
+      border: 1px solid rgb(232, 232, 232);
+      border-radius: 4px;
+      position: relative;
+      overflow: visible;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      z-index: 20;
+      background-color: white;
+    }
+
+    .checkbox::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background-color: rgba(80, 135, 248, 0.4);
+      border-radius: 6px;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+
+
+    .checkbox:active::before {
+      width: 27px;
+      height: 27px;
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 1;
+      z-index: -1;
+    }
+
+    .option.selected .checkbox {
+      background-color: rgba(36, 105, 246, 1);
+      border-color: rgba(36, 105, 246, 1);
+    }
+
+    .option:hover .checkbox::after {
+      border: solid rgba(227, 227, 227, 1);
+      content: "";
+      position: absolute;
+      left: 6px;
+      width: 10px;
+      height: 16px;
+      border-width: 0 1px 1px 0;
+      transform: rotate(35deg);
+      opacity: 1;
+      box-sizing: border-box;
+    }
+
+    .option.selected .checkbox::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      width: 10px;
+      height: 16px;
+      border: solid white;
+      border-width: 0 1px 1px 0;
+      transform: rotate(35deg);
+      opacity: 1;
+      box-sizing: border-box;
+    }
+
+
+    .done-btn {
+      background-color: rgba(255, 206, 34, 1);
+      border: none;
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 14px;
+      line-height: 130%;
+      letter-spacing: 0px;
+      padding: 12px;
+      border-radius: 4px;
+      margin: 12px 16px 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .done-btn:hover {
+      background-color: rgba(255, 216, 77, 1);
+    }
+
+    .done-btn:active {
+      background-color: rgba(255, 206, 34, 1);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin:8px 12px ;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="selector-card">
+    <div class="option" data-page="all">All pages <div class="checkbox"></div>
+    </div>
+    <hr />
+    <div class="option" data-page="1">Page 1 <div class="checkbox"></div>
+    </div>
+    <div class="option" data-page="2">Page 2 <div class="checkbox"></div>
+    </div>
+    <div class="option" data-page="3">Page 3 <div class="checkbox"></div>
+    </div>
+    <div class="option" data-page="4">Page 4 <div class="checkbox"></div>
+    </div>
+    <hr />
+
+    <button class="done-btn">Done</button>
+  </div>
+
+  <script>
+    const options = document.querySelectorAll('.option');
+    const allOption = document.querySelector('[data-page="all"]');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        const page = option.dataset.page;
+
+        if (page === 'all') {
+          const allSelected = allOption.classList.toggle('selected');
+          options.forEach(o => {
+            if (o !== allOption) {
+              o.classList.toggle('selected', allSelected);
+            }
+          });
+        } else {
+          option.classList.toggle('selected');
+          const allSelected = [...options].slice(1).every(o => o.classList.contains('selected'));
+          allOption.classList.toggle('selected', allSelected);
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
