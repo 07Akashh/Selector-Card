@@ -1,8 +1,3 @@
-Here’s a clean and professional **`README.md`** for your *Selector Card UI* project 👇
-
----
-
-```markdown
 # 🟨 Selector Card UI
 
 A modern and responsive selector card built using **HTML, CSS, and JavaScript**.  
@@ -133,8 +128,3 @@ This project is open source and available under the [MIT License](LICENSE).
 Frontend Developer | UI/UX Enthusiast  
 📧 [rahulk.softdev@gmail.com](mailto:rahulk.softdev@gmail.com)  
 🌐 [GitHub: 07Akashh](https://github.com/07Akashh)
-```
-
----
-
-Would you like me to include **animated screenshots (GIF instructions)** section or **live preview (CodePen/Netlify style)** instructions next?
